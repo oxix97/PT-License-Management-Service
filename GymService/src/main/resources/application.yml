@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: chan
+    password: 123
+    driverClassName: org.h2.Driver
+
