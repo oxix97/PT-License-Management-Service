@@ -2,7 +2,6 @@ package com.example.gymservice;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
-import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
@@ -25,6 +24,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 public class GymServiceApplication {
 
     private final JobRepository jobRepository;
+
 
     public static void main(String[] args) {
         SpringApplication.run(GymServiceApplication.class, args);
