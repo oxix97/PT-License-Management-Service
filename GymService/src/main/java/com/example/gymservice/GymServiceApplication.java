@@ -1,6 +1,7 @@
 package com.example.gymservice;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.StepContribution;
@@ -18,6 +19,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
+@Slf4j
 @RequiredArgsConstructor
 @EnableBatchProcessing
 @SpringBootApplication
@@ -49,7 +51,7 @@ public class GymServiceApplication {
         return new Tasklet() {
             @Override
             public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-                System.out.println("Execute PassStep");
+                log.info("tasklet : {},", "Execute PassStep");
                 return RepeatStatus.FINISHED;
             }
         };
