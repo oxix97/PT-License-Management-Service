@@ -1,7 +1,20 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:testdb
+    url: jdbc:mysql://localhost:3306/gym
     username: chan
     password: 123
-    driverClassName: org.h2.Driver
+#    driverClassName: jdbc:mysql://localhost:3306/gym
+    hikari:
+      maximum-pool-size: 20
+
+  batch:
+    jdbc:
+      initialize-schema: always
+
+
+---
+
+spring:
+  config.activate.on-profile: test
+  datasource.url: jdbc:h2:mem:testdb
 
