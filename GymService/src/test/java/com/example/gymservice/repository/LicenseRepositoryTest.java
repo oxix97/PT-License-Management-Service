@@ -1,6 +1,6 @@
 package com.example.gymservice.repository;
 
-import com.example.gymservice.domain.license.LicenseEntity;
+import com.example.gymservice.domain.license.License;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,7 +30,7 @@ class LicenseRepositoryTest {
     @Test
     void test1() {
         //given
-        LicenseEntity entity = createdPackageEntity(1, "챌린지 12", 0, 84);
+        License entity = createdPackageEntity(1, "챌린지 12", 0, 84);
 
         //when
         licenseRepository.save(entity);
@@ -44,15 +44,15 @@ class LicenseRepositoryTest {
     void test2() {
         //given
         LocalDateTime time = LocalDateTime.now().minusMinutes(1);
-        LicenseEntity p1 = createdPackageEntity(1, "챌린지11", 0, 80);
-        LicenseEntity p2 = createdPackageEntity(2, "챌린지12", 0, 90);
-        LicenseEntity p3 = createdPackageEntity(3, "챌린지13", 0, 100);
+        License p1 = createdPackageEntity(1, "챌린지11", 0, 80);
+        License p2 = createdPackageEntity(2, "챌린지12", 0, 90);
+        License p3 = createdPackageEntity(3, "챌린지13", 0, 100);
         licenseRepository.save(p1);
         licenseRepository.save(p2);
         licenseRepository.saveAndFlush(p3);
 
         //when
-        List<LicenseEntity> entities = licenseRepository.findByCreatedAtAfter(time, PageRequest.of(0, 5, Sort.by("licenseSeq")));
+        List<License> entities = licenseRepository.findByCreatedAtAfter(time, PageRequest.of(0, 5, Sort.by("licenseSeq")));
 
         //then
         assertThat(entities)
@@ -64,14 +64,14 @@ class LicenseRepositoryTest {
     @Test
     void test3() {
         //given
-        LicenseEntity entity = LicenseEntity.of(1, "챌린지 1", 0, 80);
+        License entity = License.of(1, "챌린지 1", 0, 80);
         licenseRepository.save(entity);
 
         //when
         int count = licenseRepository.updateCountAndPeriod(1, 5, 100);
 
         //then
-        LicenseEntity expected = licenseRepository.findById(1).orElseThrow();
+        License expected = licenseRepository.findById(1).orElseThrow();
 
         assertEquals(1, count);
         assertThat(expected)
@@ -92,8 +92,8 @@ class LicenseRepositoryTest {
         assertEquals(preSize - 1, licenseRepository.findAll().size());
     }
 
-    private LicenseEntity createdPackageEntity(Integer licenseSeq, String name, int count, int period) {
-        return LicenseEntity.of(
+    private License createdPackageEntity(Integer licenseSeq, String name, int count, int period) {
+        return License.of(
                 licenseSeq,
                 name,
                 count,

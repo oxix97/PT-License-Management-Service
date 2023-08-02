@@ -8,8 +8,9 @@ import lombok.ToString;
 
 @Getter
 @ToString(callSuper = true)
+@Table(name = "license")
 @Entity
-public class LicenseEntity extends BaseEntity {
+public class License extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer licenseSeq;
@@ -20,18 +21,18 @@ public class LicenseEntity extends BaseEntity {
     @Setter
     private Integer period;
 
-    private LicenseEntity(Integer licenseSeq, String licenseName, Integer count, Integer period) {
+    private License(Integer licenseSeq, String licenseName, Integer count, Integer period) {
         this.licenseSeq = licenseSeq;
         this.licenseName = licenseName;
         this.count = count;
         this.period = period;
     }
 
-    protected LicenseEntity() {
+    protected License() {
 
     }
 
-    public static LicenseEntity of(Integer licenseSeq, String licenseName, Integer count, Integer period) {
-        return new LicenseEntity(licenseSeq, licenseName, count, period);
+    public static License of(Integer licenseSeq, String licenseName, Integer count, Integer period) {
+        return new License(licenseSeq, licenseName, count, period);
     }
 }

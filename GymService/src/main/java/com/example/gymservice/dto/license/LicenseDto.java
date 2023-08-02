@@ -1,6 +1,6 @@
 package com.example.gymservice.dto.license;
 
-import com.example.gymservice.domain.license.LicenseEntity;
+import com.example.gymservice.domain.license.License;
 
 import java.time.LocalDateTime;
 
@@ -46,7 +46,7 @@ public record LicenseDto(
         );
     }
 
-    public static LicenseDto from(LicenseEntity entity) {
+    public static LicenseDto from(License entity) {
         return new LicenseDto(
                 entity.getLicenseSeq(),
                 entity.getLicenseName(),
